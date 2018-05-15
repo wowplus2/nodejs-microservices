@@ -3,7 +3,7 @@ const url = require('url');                     // url 모듈로드
 const qryStr = require('querystring');          // querystring 모듈로드
 
 const members = require('./monolithic_members.js');
-const goods = require('./monolithic_goods.js');
+const products = require('./monolithic_products.js');
 const purchases = require('./monolithic_purchases.js');
 
 /** 
@@ -53,8 +53,8 @@ function onRequest(res, method, pathname, params)
         case "/members":
             members.onRequest(res, method, pathname, params, response);
             break;
-        case "/goods":
-            goods.onRequest(res, method, pathname, params, response);
+        case "/products":
+            products.onRequest(res, method, pathname, params, response);
             break;
         case "/purchases":
             purchases.onRequest(res, method, pathname, params, response);

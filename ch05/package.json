@@ -4,8 +4,8 @@
   "description": "",
   "main": "monolithic.js",
   "scripts": {
-    //"test": "node test.js"
-    "test": "echo\"Error: no test specified\" && exit 1"
+    "start": "node monolithic.js",
+    "test": "node test.js"
   },
   "author": "",
   "license": "ISC",
