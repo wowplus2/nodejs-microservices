@@ -1,33 +1,32 @@
 'use strict';
 
 // 비즈니스로직 - 파일참조
-const biz = require('../ch05/monolithic_products.js');
-
+const biz = require('../ch05/monolithic_members.js');
 
 // Server 클래스 참조
-class products extends require('./server.js') 
+class members extends require('./server.js')
 {
     constructor() {
+        // 부모 클래스 생성자 호출
         super(
-            "products", 
-            process.argv[2] ? Number(process.argv[2]) : 9010,
-            ["POST/products", "GET/products", "DELETE/products"]
+            "members",
+            process.argv[2] ? Number(process.argv[2]) : 9020,
+            ["POST/members", "GET/members", "DELETE/members"]
         );
-
         // Distributor 연결
         this.connectToDistributor("127.0.0.1", 9000, (data) => {
             console.log("Distributor Notification", data);
         });
     }
 
-    // Client 요청에 따른 비즈니스 로직 호출
+    // 클라이언트 요청에 따른 비즈니스로직 호출
     onRead(socket, data) {
         console.log("onRead", socket.remoteAddr, socket.remotePort, data);
-        // 비즈니스 로직 호출
         biz.onRequest(socket, data.method, data.uri, data.params, (s, packet) => {
-            socket.write(JSON.stringify(packet) + '¶');    // 응답 패킷 전송
+            socket.write(JSON.stringify(packet) + '¶');
         });
     }
 }
 
-new products();
+// 인스턴스 생성
+new members();
