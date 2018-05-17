@@ -28,7 +28,7 @@ class tcpClient
             let sz = this.merge ? this.merge + data.toString() : data.toString();
             let arr = sz.split('¶');
 
-            for (var n in arr) {
+            for (let n in arr) {
                 if (sz.charAt(sz.length - 1) != '¶' && n == arr.length - 1) {
                     this.merge = arr[n];
                     break;
